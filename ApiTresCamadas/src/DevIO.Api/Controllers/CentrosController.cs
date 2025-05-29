@@ -34,5 +34,15 @@ namespace DevIO.Api.Controllers
             return CustomResponse(HttpStatusCode.Created, centroViewModel);
         }
 
+        [HttpPost("Rotateste")]
+        public async Task<ActionResult<ProdutoViewModel>> Rto(CentroViewModel centroViewModel)
+        {
+            if (!ModelState.IsValid) return CustomResponse(ModelState);
+
+            await _centroService.Adicionar(_mapper.Map<Centro>(centroViewModel));
+
+            return CustomResponse(HttpStatusCode.Created, centroViewModel);
+        }
+
     }
 }
